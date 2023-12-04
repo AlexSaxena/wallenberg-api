@@ -18,6 +18,13 @@ app.get("/", (req, res) => {
   res.json({ general: "Kenobi" });
 });
 
+app.post("/newStudent", (req, res) => {
+  // TODO
+  // Get newStudent data from req.body
+  // Create NewStudent Data
+  // Respond with sucess message
+});
+
 // Server Startup
 const PORT = process.env.PORT || 3001;
 
