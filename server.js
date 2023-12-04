@@ -1,5 +1,5 @@
 // Load Env File | Checks if Local or Prod
-if (process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
@@ -19,4 +19,14 @@ app.get("/", (req, res) => {
 });
 
 // Server Startup
-app.listen(process.env.PORT);
+const PORT = process.env.PORT || 3001;
+
+const blueText = "\x1b[34m";
+const italicText = "\x1b[3m";
+const resetStyle = "\x1b[0m";
+
+app.listen(PORT, () => {
+  console.log(
+    `${blueText} ${italicText}Server is running on port ${PORT}${resetStyle}`
+  );
+});
