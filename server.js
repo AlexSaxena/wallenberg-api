@@ -21,13 +21,15 @@ app.get("/", (req, res) => {
   res.json({ general: "Kenobi" });
 });
 
-app.get("/showStudents", (req, res) => {
+// Show all students
+app.get("/showStudents", async (req, res) => {
   // Request -> Find Student
+  const showStudents = await NewStudentData.find();
   // Response -> Display Student
+  res.status(200).json({ showStudents: showStudents });
 });
 
 app.post("/newStudent", async (req, res) => {
-  // TODO
   // Get newStudent data from req.body
   const name = req.body.name;
   const nrOfParents = req.body.nrOfParents;
