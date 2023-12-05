@@ -23,10 +23,16 @@ app.get("/", (req, res) => {
 
 // Show all students
 app.get("/showStudents", async (req, res) => {
-  // Request -> Find Student
+  // Request -> Find All Students
   const showStudents = await NewStudentData.find();
-  // Response -> Display Student
+  // Response -> Display All Students
   res.status(200).json({ showStudents: showStudents });
+});
+
+// Show Single Student
+app.get("/showStudents", async (req, res) => {
+  // Request -> Find Single Student
+  // Response -> Display Student
 });
 
 app.post("/newStudent", async (req, res) => {
