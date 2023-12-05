@@ -21,6 +21,11 @@ app.get("/", (req, res) => {
   res.json({ general: "Kenobi" });
 });
 
+app.get("/showStudents", (req, res) => {
+  // Request -> Find Student
+  // Response -> Display Student
+});
+
 app.post("/newStudent", async (req, res) => {
   // TODO
   // Get newStudent data from req.body
