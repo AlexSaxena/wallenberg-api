@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.json({ general: "Kenobi" });
 });
 
-// Show all students
+// GET Show all students
 app.get("/showStudents", async (req, res) => {
   // Request -> Find All Students
   const showStudents = await NewStudentData.find();
@@ -29,7 +29,7 @@ app.get("/showStudents", async (req, res) => {
   res.status(200).json({ showStudents: showStudents });
 });
 
-// Show Single Student
+// GET Show Single Student By ID
 app.get("/showStudents/:id", async (req, res) => {
   // Get ID from URL | take id from url -> params.id
   const studentID = req.params.id;
@@ -41,6 +41,7 @@ app.get("/showStudents/:id", async (req, res) => {
   res.status(200).json({ showStudent });
 });
 
+// POST Add New Student to DB
 app.post("/newStudent", async (req, res) => {
   // Get newStudent data from req.body
   const name = req.body.name;
@@ -55,6 +56,29 @@ app.post("/newStudent", async (req, res) => {
   });
   // Respond with sucess message
   res.status(200).json({ newStudent: newStudent });
+});
+
+app.put("/showStudents/:id", async (req, res) => {
+  // Get ID from URL | take id from url -> params.id
+  const studentID = req.params.id;
+
+  // Get Data from request body
+  const name = req.body.name;
+  const nrOfParents = req.body.nrOfParents;
+  const city = req.body.city;
+
+  // Request -> Update Selected Student -> Doesn't return updated data.
+  await NewStudentData.findByIdAndUpdate(studentID, {
+    name: name,
+    nrOfParents: nrOfParents,
+    city: city,
+  });
+
+  // Find Updated student By ID
+  const showStudent = await NewStudentData.findById(studentID);
+
+  // Response -> Display Updated Student
+  res.status(200).json({ updatedStudent: showStudent });
 });
 
 // Server Startup - ENV port or Default
