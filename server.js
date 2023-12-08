@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 
 // Import Dependencies
 const express = require("express");
+const cors = require("cors");
 const connectToDb = require("./config/connectToDb");
 
 const { studentRoutes } = require("./routes/studentRoutes");
@@ -13,6 +14,7 @@ const { newStudentRoute } = require("./routes/newStudentRoute");
 // Express App
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Connect to Database
 connectToDb();
