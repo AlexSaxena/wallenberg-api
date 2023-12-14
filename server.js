@@ -10,6 +10,7 @@ const connectToDb = require("./config/connectToDb");
 
 const { studentRoutes } = require("./routes/studentRoutes");
 const { newStudentRoute } = require("./routes/newStudentRoute");
+const { authRoutes } = require("./routes/authRoutes");
 
 // Express App
 const app = express();
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/newStudent", newStudentRoute);
 app.use("/showStudents", studentRoutes);
+app.use("/auth/", authRoutes);
 
 // Server Startup - ENV port or Default
 const PORT = process.env.PORT || 3001;
