@@ -10,7 +10,7 @@ async function register(req, res) {
     if (!username || !password) {
       return res
         .status(400)
-        .json({ error: "Username and password are required." });
+        .json({ error: "Användarnamn och lösenord är obligatoriska." });
     }
 
     // Creates Hash for password (encryption)
@@ -24,7 +24,9 @@ async function register(req, res) {
     console.error(err);
 
     // Respond with an error message
-    res.status(400).json({ error: "Registration failed. Please try again." });
+    res
+      .status(400)
+      .json({ error: "Registreringen misslyckades. Försök igen." });
   }
 }
 
