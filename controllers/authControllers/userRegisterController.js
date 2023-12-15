@@ -30,12 +30,4 @@ async function register(req, res) {
   }
 }
 
-function login(req, res) {
-  return "login";
-}
-
-function logout(req, res) {
-  return "logout";
-}
-
-module.exports = { register, login, logout };
+module.exports = { register };
