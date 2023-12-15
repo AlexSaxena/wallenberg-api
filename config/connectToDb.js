@@ -1,8 +1,3 @@
-// Load Env File | Checks if Local or Prod
-if (process.env.NODE_ENV != "production") {
-  require("dotenv").config();
-}
-
 const mongoose = require("mongoose");
 
 async function connectToDb() {
