@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const User = require("../../models/UserSchema");
 
 async function login(req, res) {
@@ -18,9 +19,18 @@ async function login(req, res) {
     return res.sendStatus(401);
   }
   // Create JWT Token
+  let exp = Date.now() + 1000 * 60 * 60 * 24;
+  const token = jwt.sign({ sub: user._id, exp: exp }, process.env.SECRET);
 
+  // Set Cookie
+  res.cookie("Authorization", token, {
+    expires: new Date(exp),
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+  });
   // Respond with user
-  return "login";
+  return res.sendStatus(200);
 }
 
 module.exports = { login };
