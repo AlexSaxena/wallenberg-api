@@ -1,11 +1,12 @@
 const User = require("../../models/UserSchema");
 
-function register(req, res) {
+async function register(req, res) {
   // Get Username & Password from Req Body
-
+  const { username, password } = req.body;
   // Create User with given Data
-
+  await User.create({ username, password });
   // Respond with New User
+  res.sendStatus(200);
 
   return "register";
 }
