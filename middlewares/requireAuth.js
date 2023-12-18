@@ -9,6 +9,11 @@ async function requireAuth(req, res, next) {
     // Decode Token
     const decoded = jwt.verify(token, process.env.SECRET);
 
+    // Check if Cookie has expired
+    if (Date.now() > decoded.exp) {
+      return res.sendStatus(401);
+    }
+
     //  Find User using Decoded data
     const user = await User.findById(decoded.sub);
 
