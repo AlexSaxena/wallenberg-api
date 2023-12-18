@@ -10,7 +10,16 @@ async function register(req, res) {
     if (!username || !password) {
       return res
         .status(400)
-        .json({ error: "Användarnamn och lösenord är obligatoriska." });
+        .json({ message: "Användarnamn och Lösenord är Obligatoriska." });
+    }
+
+    // Check if the username is already taken
+    const existingUser = await User.findOne({ username });
+
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ message: "Användarnamnet är redan taget." });
     }
 
     // Creates Hash for password (encryption)
@@ -18,15 +27,16 @@ async function register(req, res) {
 
     // Create User with given Data
     await User.create({ username, password: hashedPassword });
-    // Respond with New User
+
+    // Respond with success 200
     res.sendStatus(200);
   } catch (err) {
-    console.error(err);
+    console.error("Registration error ->", err);
 
-    // Respond with an error message
+    // Respond to user with a generic error message
     res
-      .status(400)
-      .json({ error: "Registreringen misslyckades. Försök igen." });
+      .status(500)
+      .json({ message: "Registreringen misslyckades. Försök igen." });
   }
 }
 
