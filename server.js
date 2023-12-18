@@ -34,7 +34,7 @@ app.use("/newStudent", newStudentRoute);
 app.use("/showStudents", studentRoutes);
 app.use("/auth/", authRoutes);
 app.get("/check-auth", requireAuth, (req, res) => {
-  res.json({ message: "Passed Auth Middleware" }).send(200);
+  res.json({ message: "Passed Auth Middleware" });
 });
 
 // Server Startup - ENV port or Default
