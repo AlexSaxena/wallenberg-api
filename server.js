@@ -20,7 +20,12 @@ const requireAuth = require("./middlewares/requireAuth");
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 // Connect to Database
 connectToDb();
@@ -34,6 +39,7 @@ app.use("/newStudent", newStudentRoute);
 app.use("/showStudents", studentRoutes);
 app.use("/auth/", authRoutes);
 app.get("/check-auth", requireAuth, (req, res) => {
+  console.log(req.user);
   res.json({ message: "Passed Auth Middleware" });
 });
 
