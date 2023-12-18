@@ -6,6 +6,6 @@ const studentFormSchema = new mongoose.Schema({
   city: String,
 });
 
-const NewStudentData = mongoose.model("NewStudents", studentFormSchema);
+const NewStudentData = mongoose.model("StudentData", studentFormSchema);
 
 module.exports = NewStudentData;
