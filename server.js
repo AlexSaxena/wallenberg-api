@@ -13,6 +13,9 @@ const { studentRoutes } = require("./routes/studentRoutes");
 const { newStudentRoute } = require("./routes/newStudentRoute");
 const { authRoutes } = require("./routes/authRoutes");
 
+// For checking Auth Middleware
+const requireAuth = require("./middlewares/requireAuth");
+
 // Express App
 const app = express();
 app.use(express.json());
@@ -30,6 +33,9 @@ app.get("/", (req, res) => {
 app.use("/newStudent", newStudentRoute);
 app.use("/showStudents", studentRoutes);
 app.use("/auth/", authRoutes);
+app.get("/check-auth", requireAuth, (req, res) => {
+  res.sendStatus(200);
+});
 
 // Server Startup - ENV port or Default
 const PORT = process.env.PORT || 3001;
