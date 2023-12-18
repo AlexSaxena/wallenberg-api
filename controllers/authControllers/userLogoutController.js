@@ -1,8 +1,6 @@
-const bcrypt = require("bcryptjs");
-const User = require("../../models/UserSchema");
-
 function logout(req, res) {
-  return "logout";
+  res.clearCookie("Authorization");
+  res.sendStatus(200);
 }
 
 module.exports = { logout };
