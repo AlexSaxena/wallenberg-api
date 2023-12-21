@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/newStudent", newStudentRoute);
-app.use("/showStudents", studentRoutes);
+app.use("/showStudents", requireAuth, studentRoutes);
 app.use("/auth/", authRoutes);
 app.get("/check-auth", requireAuth, (req, res) => {
   console.log(req.user);
