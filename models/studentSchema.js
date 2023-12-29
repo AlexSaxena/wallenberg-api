@@ -172,7 +172,51 @@ const studentSchema = new mongoose.Schema(
     gdprConsentCheckbox: {
       type: Boolean,
     },
-    // Income Declaration yet to be implemented
+
+    // Income Declaration fields
+    guardian_1_income: {
+      name: {
+        type: String,
+      },
+      personal_number: {
+        type: String, // STRING formated "ÅÅÅÅMMDD-XXXX" in frontend Maybe check later
+      },
+      address: {
+        type: String,
+      },
+      postal_code: {
+        type: String,
+      },
+      phone: {
+        type: String,
+      },
+      employer_school: {
+        type: String,
+      },
+    },
+
+    // Optional Income Declaration fields -> Guardian 2
+    guardian_2_income: {
+      name: {
+        type: String,
+      },
+      personal_number: {
+        type: String,
+      },
+      address: {
+        type: String,
+      },
+      postal_code: {
+        type: String,
+      },
+      phone: {
+        type: String,
+      },
+      employer_school: {
+        type: String,
+      },
+    },
+    // HOUSEHOLD INCOME Yet to be implemented
   },
   { timestamps: true }
 );
