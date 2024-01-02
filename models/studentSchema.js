@@ -216,7 +216,19 @@ const studentSchema = new mongoose.Schema(
         type: String,
       },
     },
-    // HOUSEHOLD INCOME Yet to be implemented
+    // HOUSEHOLD INCOME
+    household_income: [
+      {
+        guardian_1: {
+          statement: String,
+          income: Number,
+        },
+        guardian_2: {
+          statement: String,
+          income: Number,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
