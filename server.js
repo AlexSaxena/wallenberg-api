@@ -13,6 +13,10 @@ const { studentRoutes } = require("./routes/studentRoutes");
 const { newStudentRoute } = require("./routes/newStudentRoute");
 const { authRoutes } = require("./routes/authRoutes");
 
+// BankID Controllers
+const { bankIDSign } = require("./controllers/bankID/bankIDSignController");
+const { bankIDStatus } = require("./controllers/bankID/bankIDStatusController");
+
 // For checking Auth Middleware
 const requireAuth = require("./middlewares/requireAuth");
 
@@ -42,6 +46,10 @@ app.get("/check-auth", requireAuth, (req, res) => {
   console.log(req.user);
   res.json({ message: "Passed Auth Middleware" });
 });
+
+// Routes For BankID handling
+app.post("/api/sign", bankIDSign);
+app.post("/api/status", bankIDStatus);
 
 // Server Startup - ENV port or Default
 const PORT = process.env.PORT || 3001;
